@@ -20,3 +20,21 @@ grupo_producto = df_ventas.groupby('Producto')['Monto'].sum()
 
 # Mostrar los resultados
 print(grupo_producto)
+
+# Aplicación de funciones: 'apply' y 'map'
+
+# Definiendo una función de limpieza
+# Función para limpiar fechas
+
+def limpiar_fecha(fecha):
+    try:
+        return pd.to_datetime(fecha)
+    except:
+        return pd.NaT # Not a Time, similar a NaN para fechas
+
+# Aplicar la funicón de limpieza
+df_ventas['Fecha'] = df_ventas['Fecha'].apply(limpiar_fecha)
+
+# Mostrar las primeras filas para verificar
+print(df_ventas.head())
+
